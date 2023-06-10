@@ -17,6 +17,9 @@
 		6C73EA402A34E68500AABFF9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA3F2A34E68500AABFF9 /* ContentView.swift */; };
 		6C73EA422A34E68600AABFF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C73EA412A34E68600AABFF9 /* Assets.xcassets */; };
 		6C73EA452A34E68600AABFF9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C73EA442A34E68600AABFF9 /* Preview Assets.xcassets */; };
+		6C73EA4C2A34E78B00AABFF9 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA4B2A34E78B00AABFF9 /* Project.swift */; };
+		6C73EA4E2A34E88000AABFF9 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA4D2A34E88000AABFF9 /* Task.swift */; };
+		6C73EA502A34ECC600AABFF9 /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +34,9 @@
 		6C73EA3F2A34E68500AABFF9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6C73EA412A34E68600AABFF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6C73EA442A34E68600AABFF9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6C73EA4B2A34E78B00AABFF9 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		6C73EA4D2A34E88000AABFF9 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +71,10 @@
 			children = (
 				6C73EA2D2A34E68500AABFF9 /* TODO.md */,
 				6C73EA3D2A34E68500AABFF9 /* PARADoApp.swift */,
+				6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */,
 				6C73EA3F2A34E68500AABFF9 /* ContentView.swift */,
+				6C73EA4B2A34E78B00AABFF9 /* Project.swift */,
+				6C73EA4D2A34E88000AABFF9 /* Task.swift */,
 				6C73EA412A34E68600AABFF9 /* Assets.xcassets */,
 				6C73EA2F2A34E68500AABFF9 /* Private */,
 				6C73EA342A34E68500AABFF9 /* Models */,
@@ -189,11 +198,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C73EA4E2A34E88000AABFF9 /* Task.swift in Sources */,
+				6C73EA502A34ECC600AABFF9 /* ProjectListView.swift in Sources */,
 				6C73EA362A34E68500AABFF9 /* AppSettings.swift in Sources */,
 				6C73EA3C2A34E68500AABFF9 /* AppSettingsView.swift in Sources */,
 				6C73EA402A34E68500AABFF9 /* ContentView.swift in Sources */,
 				6C73EA392A34E68500AABFF9 /* AppSettingsViewModel.swift in Sources */,
 				6C73EA3E2A34E68500AABFF9 /* PARADoApp.swift in Sources */,
+				6C73EA4C2A34E78B00AABFF9 /* Project.swift in Sources */,
 				6C73EA332A34E68500AABFF9 /* PrivateKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
