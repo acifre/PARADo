@@ -12,7 +12,7 @@ import SwiftUI
 struct PARADoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ProjectListView()
         }
         .modelContainer(for: [
             Project.self,

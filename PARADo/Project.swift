@@ -12,17 +12,17 @@ import SwiftData
 class Project {
     @Attribute(.unique) var id: String?
     var title: String
-    var description: String
+    var content: String
     var dateCreated: Date
     var dateFinished: Date?
     
     @Relationship(inverse: \Task.project) var tasks: [Task]
     
     
-    init(id: String? = nil, title: String, description: String, tasks: [Task]) {
+    init(id: String, title: String, content: String, tasks: [Task]) {
         self.id = id
         self.title = title
-        self.description = description
+        self.content = content
         self.dateCreated = Date()
         self.tasks = tasks
     }
