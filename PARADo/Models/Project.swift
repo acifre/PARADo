@@ -16,20 +16,15 @@ class Project {
     var dateCreated: Date
     var dateFinished: Date?
     
-    @Relationship(inverse: \Task.project) var tasks: [Task]
+    @Attribute(.transient) var isChecked: Bool = false
     
+    @Relationship(.cascade, inverse: \Task.project) var tasks: [Task]
     
-    init(id: String, title: String, content: String, tasks: [Task]) {
-        self.id = id
+    init(title: String, content: String) {
+        self.id = UUID().uuidString
         self.title = title
         self.content = content
         self.dateCreated = Date()
-        self.tasks = tasks
+        self.tasks = []
     }
-    
 }
-
-//@Model
-//class ProjectType {
-//    
-//}

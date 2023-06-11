@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C6081DC2A36558100664DA7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6081DB2A36558100664DA7 /* Extensions.swift */; };
 		6C73EA2E2A34E68500AABFF9 /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = 6C73EA2D2A34E68500AABFF9 /* TODO.md */; };
 		6C73EA312A34E68500AABFF9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6C73EA302A34E68500AABFF9 /* .gitignore */; };
 		6C73EA332A34E68500AABFF9 /* PrivateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA322A34E68500AABFF9 /* PrivateKeys.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6C6081DB2A36558100664DA7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6C73EA2A2A34E68500AABFF9 /* PARADo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PARADo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C73EA2D2A34E68500AABFF9 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		6C73EA302A34E68500AABFF9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -73,11 +75,7 @@
 			children = (
 				6C73EA2D2A34E68500AABFF9 /* TODO.md */,
 				6C73EA3D2A34E68500AABFF9 /* PARADoApp.swift */,
-				6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */,
-				6C73EA512A36232D00AABFF9 /* TaskListView.swift */,
 				6C73EA3F2A34E68500AABFF9 /* ContentView.swift */,
-				6C73EA4B2A34E78B00AABFF9 /* Project.swift */,
-				6C73EA4D2A34E88000AABFF9 /* Task.swift */,
 				6C73EA412A34E68600AABFF9 /* Assets.xcassets */,
 				6C73EA2F2A34E68500AABFF9 /* Private */,
 				6C73EA342A34E68500AABFF9 /* Models */,
@@ -100,6 +98,9 @@
 		6C73EA342A34E68500AABFF9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6C6081DB2A36558100664DA7 /* Extensions.swift */,
+				6C73EA4D2A34E88000AABFF9 /* Task.swift */,
+				6C73EA4B2A34E78B00AABFF9 /* Project.swift */,
 				6C73EA352A34E68500AABFF9 /* AppSettings.swift */,
 			);
 			path = Models;
@@ -116,6 +117,8 @@
 		6C73EA3A2A34E68500AABFF9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6C73EA512A36232D00AABFF9 /* TaskListView.swift */,
+				6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */,
 				6C73EA3B2A34E68500AABFF9 /* AppSettingsView.swift */,
 			);
 			path = Views;
@@ -210,6 +213,7 @@
 				6C73EA3E2A34E68500AABFF9 /* PARADoApp.swift in Sources */,
 				6C73EA522A36232D00AABFF9 /* TaskListView.swift in Sources */,
 				6C73EA4C2A34E78B00AABFF9 /* Project.swift in Sources */,
+				6C6081DC2A36558100664DA7 /* Extensions.swift in Sources */,
 				6C73EA332A34E68500AABFF9 /* PrivateKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,10 +19,9 @@ class Task {
     @Attribute(.transient) var isComplete: Bool = false
     
     @Relationship var project: Project?
-
     
-    init(id: String, name: String, note: String) {
-        self.id = id
+    init(name: String, note: String) {
+        self.id = UUID().uuidString
         self.name = name
         self.note = note
         self.dateCreated = Date()

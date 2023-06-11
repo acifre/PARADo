@@ -12,11 +12,31 @@ import SwiftUI
 struct PARADoApp: App {
     var body: some Scene {
         WindowGroup {
-            ProjectListView()
+            TabView {
+                projectList
+                taskList
+            }
         }
         .modelContainer(for: [
             Project.self,
             Task.self
         ])
+    }
+    var projectList: some View {
+        NavigationStack {
+            ProjectListView()
+        }
+        .tabItem {
+            Label("Projects", systemImage: "list.bullet.rectangle")
+    }
+    }
+    
+    var taskList: some View {
+        NavigationStack {
+            TaskListView()
+        }
+        .tabItem {
+            Label("Tasks", systemImage: "list.bullet")
+    }
     }
 }

@@ -9,13 +9,20 @@ import SwiftData
 import SwiftUI
 
 struct ProjectListView: View {
-    @Environment(\.modelContext) var context
+    @Environment(\.modelContext) private var context
     @Query(sort: \.title) var allProjects: [Project]
 
     @State var newProjectTitle = ""
     @State var newProjectDescription = ""
 
-
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        //use the locale date style
+        formatter.dateStyle = .short
+        //set the locale to the user's locale
+        formatter.locale = Locale.current
+        return formatter
+    }()
 
     var body: some View {
         List {
@@ -26,8 +33,6 @@ struct ProjectListView: View {
                     TextField("Project description", text: $newProjectDescription, axis: .vertical)
                         .lineLimit(2...4)
 
-
-
                     Button("Save") { createProject() }
                         .disabled(newProjectTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
@@ -37,7 +42,26 @@ struct ProjectListView: View {
                     ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.clipboard.fill")
                 } else {
                     ForEach(allProjects) { project in
-                        Text(project.title)
+                        NavigationLink {
+
+                            VStack {
+                                Text(project.title)
+                                Text(project.content)
+                                Text("\(project.tasks.count)")
+
+                                VStack {
+                                    ForEach(project.tasks) { task in
+                                        Text(task.name)
+                                    }
+                                }
+                            }
+                        } label: {
+                            VStack(alignment: .leading) {
+                                Text(project.title)
+                                Text(project.dateCreated, formatter: dateFormatter)
+                                    .font(.caption)
+                            }
+                        }
                     }
                         .onDelete { indexSet in
                         indexSet.forEach { index in
@@ -46,25 +70,15 @@ struct ProjectListView: View {
 
                         try? context.save()
 
-
                     }
-
                 }
-
             }
         }
     }
 
     func createProject() {
-//        var tags = [Tag]()
-//
-//        for tag in allTags {
-//            if tag.isChecked {
-//                tags.append(tag)
-//                tag.isChecked = false
-//            }
-//        }
-        let project = Project(id: UUID().uuidString, title: newProjectTitle, content: newProjectDescription, tasks: [])
+
+        let project = Project(title: newProjectTitle, content: newProjectDescription)
 
         context.insert(object: project)
         try? context.save()

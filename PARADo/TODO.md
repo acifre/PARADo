@@ -7,4 +7,4 @@
 
 # TODO
 
-- 
+- Figure out how to change relationship from many to many to one to many (or one to one) in the data model
