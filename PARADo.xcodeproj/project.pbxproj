@@ -20,6 +20,7 @@
 		6C73EA4C2A34E78B00AABFF9 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA4B2A34E78B00AABFF9 /* Project.swift */; };
 		6C73EA4E2A34E88000AABFF9 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA4D2A34E88000AABFF9 /* Task.swift */; };
 		6C73EA502A34ECC600AABFF9 /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */; };
+		6C73EA522A36232D00AABFF9 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA512A36232D00AABFF9 /* TaskListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		6C73EA4B2A34E78B00AABFF9 /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		6C73EA4D2A34E88000AABFF9 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
+		6C73EA512A36232D00AABFF9 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				6C73EA2D2A34E68500AABFF9 /* TODO.md */,
 				6C73EA3D2A34E68500AABFF9 /* PARADoApp.swift */,
 				6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */,
+				6C73EA512A36232D00AABFF9 /* TaskListView.swift */,
 				6C73EA3F2A34E68500AABFF9 /* ContentView.swift */,
 				6C73EA4B2A34E78B00AABFF9 /* Project.swift */,
 				6C73EA4D2A34E88000AABFF9 /* Task.swift */,
@@ -205,6 +208,7 @@
 				6C73EA402A34E68500AABFF9 /* ContentView.swift in Sources */,
 				6C73EA392A34E68500AABFF9 /* AppSettingsViewModel.swift in Sources */,
 				6C73EA3E2A34E68500AABFF9 /* PARADoApp.swift in Sources */,
+				6C73EA522A36232D00AABFF9 /* TaskListView.swift in Sources */,
 				6C73EA4C2A34E78B00AABFF9 /* Project.swift in Sources */,
 				6C73EA332A34E68500AABFF9 /* PrivateKeys.swift in Sources */,
 			);

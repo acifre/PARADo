@@ -12,7 +12,7 @@ import SwiftData
 class Task {
     @Attribute(.unique) var id: String?
     var name: String
-    var content: String
+    var note: String
     var dateCreated: Date
     var dateFinished: Date?
     
@@ -21,10 +21,10 @@ class Task {
     @Relationship var project: Project?
 
     
-    init(id: String, name: String, content: String) {
+    init(id: String, name: String, note: String) {
         self.id = id
         self.name = name
-        self.content = content
+        self.note = note
         self.dateCreated = Date()
     }
     
