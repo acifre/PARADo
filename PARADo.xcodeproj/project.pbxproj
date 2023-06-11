@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6C6081DC2A36558100664DA7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6081DB2A36558100664DA7 /* Extensions.swift */; };
+		6C6081DE2A366E7A00664DA7 /* CheckToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6081DD2A366E7A00664DA7 /* CheckToggleStyle.swift */; };
+		6C6081E02A36705200664DA7 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6081DF2A36705200664DA7 /* TaskCell.swift */; };
+		6C6081E22A36758A00664DA7 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6081E12A36758A00664DA7 /* AddTaskView.swift */; };
 		6C73EA2E2A34E68500AABFF9 /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = 6C73EA2D2A34E68500AABFF9 /* TODO.md */; };
 		6C73EA312A34E68500AABFF9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6C73EA302A34E68500AABFF9 /* .gitignore */; };
 		6C73EA332A34E68500AABFF9 /* PrivateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA322A34E68500AABFF9 /* PrivateKeys.swift */; };
-		6C73EA362A34E68500AABFF9 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA352A34E68500AABFF9 /* AppSettings.swift */; };
-		6C73EA392A34E68500AABFF9 /* AppSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA382A34E68500AABFF9 /* AppSettingsViewModel.swift */; };
-		6C73EA3C2A34E68500AABFF9 /* AppSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA3B2A34E68500AABFF9 /* AppSettingsView.swift */; };
 		6C73EA3E2A34E68500AABFF9 /* PARADoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA3D2A34E68500AABFF9 /* PARADoApp.swift */; };
 		6C73EA402A34E68500AABFF9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73EA3F2A34E68500AABFF9 /* ContentView.swift */; };
 		6C73EA422A34E68600AABFF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C73EA412A34E68600AABFF9 /* Assets.xcassets */; };
@@ -26,13 +26,13 @@
 
 /* Begin PBXFileReference section */
 		6C6081DB2A36558100664DA7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		6C6081DD2A366E7A00664DA7 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
+		6C6081DF2A36705200664DA7 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		6C6081E12A36758A00664DA7 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		6C73EA2A2A34E68500AABFF9 /* PARADo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PARADo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C73EA2D2A34E68500AABFF9 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		6C73EA302A34E68500AABFF9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		6C73EA322A34E68500AABFF9 /* PrivateKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeys.swift; sourceTree = "<group>"; };
-		6C73EA352A34E68500AABFF9 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
-		6C73EA382A34E68500AABFF9 /* AppSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsViewModel.swift; sourceTree = "<group>"; };
-		6C73EA3B2A34E68500AABFF9 /* AppSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsView.swift; sourceTree = "<group>"; };
 		6C73EA3D2A34E68500AABFF9 /* PARADoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PARADoApp.swift; sourceTree = "<group>"; };
 		6C73EA3F2A34E68500AABFF9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6C73EA412A34E68600AABFF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,7 +101,6 @@
 				6C6081DB2A36558100664DA7 /* Extensions.swift */,
 				6C73EA4D2A34E88000AABFF9 /* Task.swift */,
 				6C73EA4B2A34E78B00AABFF9 /* Project.swift */,
-				6C73EA352A34E68500AABFF9 /* AppSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -109,7 +108,6 @@
 		6C73EA372A34E68500AABFF9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				6C73EA382A34E68500AABFF9 /* AppSettingsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -117,9 +115,11 @@
 		6C73EA3A2A34E68500AABFF9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6C6081DF2A36705200664DA7 /* TaskCell.swift */,
 				6C73EA512A36232D00AABFF9 /* TaskListView.swift */,
+				6C6081E12A36758A00664DA7 /* AddTaskView.swift */,
 				6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */,
-				6C73EA3B2A34E68500AABFF9 /* AppSettingsView.swift */,
+				6C6081DD2A366E7A00664DA7 /* CheckToggleStyle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -204,16 +204,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C6081E22A36758A00664DA7 /* AddTaskView.swift in Sources */,
 				6C73EA4E2A34E88000AABFF9 /* Task.swift in Sources */,
 				6C73EA502A34ECC600AABFF9 /* ProjectListView.swift in Sources */,
-				6C73EA362A34E68500AABFF9 /* AppSettings.swift in Sources */,
-				6C73EA3C2A34E68500AABFF9 /* AppSettingsView.swift in Sources */,
 				6C73EA402A34E68500AABFF9 /* ContentView.swift in Sources */,
-				6C73EA392A34E68500AABFF9 /* AppSettingsViewModel.swift in Sources */,
 				6C73EA3E2A34E68500AABFF9 /* PARADoApp.swift in Sources */,
+				6C6081E02A36705200664DA7 /* TaskCell.swift in Sources */,
 				6C73EA522A36232D00AABFF9 /* TaskListView.swift in Sources */,
 				6C73EA4C2A34E78B00AABFF9 /* Project.swift in Sources */,
 				6C6081DC2A36558100664DA7 /* Extensions.swift in Sources */,
+				6C6081DE2A366E7A00664DA7 /* CheckToggleStyle.swift in Sources */,
 				6C73EA332A34E68500AABFF9 /* PrivateKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

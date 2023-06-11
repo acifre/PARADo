@@ -16,11 +16,13 @@ struct PARADoApp: App {
                 projectList
                 taskList
             }
+            .preferredColorScheme(.dark)
         }
         .modelContainer(for: [
             Project.self,
             Task.self
         ])
+
     }
     var projectList: some View {
         NavigationStack {

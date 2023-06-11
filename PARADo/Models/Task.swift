@@ -14,6 +14,7 @@ class Task {
     var name: String
     var note: String
     var dateCreated: Date
+    var dateDue: Date
     var dateFinished: Date?
     
     @Attribute(.transient) var isComplete: Bool = false
@@ -25,6 +26,8 @@ class Task {
         self.name = name
         self.note = note
         self.dateCreated = Date()
+        self.dateDue = Date()
+
     }
     
 }
