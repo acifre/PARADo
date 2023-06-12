@@ -51,10 +51,10 @@ struct TaskDetailView: View {
                             .toggleStyle(.switch)
                             .labelsHidden()
                             .onChange(of: task.hasDueDate) {
-                                if !task.hasDueDate {
-                                    task.dateDue = nil
-                                }
+                            if !task.hasDueDate {
+                                task.dateDue = nil
                             }
+                        }
                     }
                     if task.hasDueDate {
                         Text(task.dateDue ?? .now, formatter: dateFormatter)
@@ -72,14 +72,23 @@ struct TaskDetailView: View {
                         Toggle("Project", isOn: $task.hasProject)
                             .toggleStyle(.switch)
                             .labelsHidden()
+                            .disabled(allProjects.isEmpty)
                             .onChange(of: task.hasProject) {
-                                if !task.hasProject {
-                                    task.project = nil
-                                }
+
+                            if !task.hasProject {
+                                task.project = nil
+                            } else {
+                                task.project = allProjects.first
                             }
+                        }
 
                     }
-                    if task.hasProject  {
+
+                    if allProjects.isEmpty {
+                        ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.rectangle")
+                    }
+
+                    if task.hasProject {
                         DisclosureGroup("Choose project") {
                             if allProjects.isEmpty {
                                 ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.rectangle")
@@ -93,13 +102,10 @@ struct TaskDetailView: View {
                             }
                         }
                     }
-                    
+
                     Text(task.project?.displayTitle ?? "No project")
 
                 }
-
-
-
             }
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("Details")

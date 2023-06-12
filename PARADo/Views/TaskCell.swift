@@ -70,7 +70,7 @@ struct TaskCell: View {
             }
 
         }
-            .contentShape(Rectangle())
+//            .contentShape(Rectangle())
             .onLongPressGesture {
             withAnimation {
                 showingInfo.toggle()

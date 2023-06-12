@@ -17,10 +17,12 @@ struct AddTaskView: View {
 
     @State var newTaskName = ""
     @State var newTaskNote = ""
-    @State var newTaskDateDue = Date()
+    @State var newTaskDateDue: Date?
     @State var newTaskProject: Project?
 
     @State var showingDatePicker = false
+    @State var showingProjectPicker = false
+
 
     var body: some View {
         NavigationView {
@@ -41,19 +43,51 @@ struct AddTaskView: View {
                 }
 
                 Section {
+                    HStack {
+                        Image(systemName: "calendar")
+                        Text("Due")
+                        Spacer()
+                        Toggle("Due date", isOn: $showingDatePicker)
+                            .toggleStyle(.switch)
+                            .labelsHidden()
+                    }
+
                     if showingDatePicker {
-                        DatePicker("Date due", selection: $newTaskDateDue, displayedComponents: .date)
+                        DatePicker("Date due", selection: $newTaskDateDue.toUnwrapped(defaultValue: .now), displayedComponents: .date)
                             .datePickerStyle(.compact)
                     }
 
-                    DisclosureGroup("Add to") {
-                        if allProjects.isEmpty {
-                            ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.rectangle")
-                        } else {
-                            Picker("Project", selection: $newTaskProject) {
-                                ForEach(allProjects) { project in
-                                    Text(project.displayTitle)
-                                        .tag(Optional(project))
+                    HStack {
+                        Image(systemName: "list.bullet.rectangle")
+                        Text("Project")
+                        Spacer()
+                        Toggle("Project", isOn: $showingProjectPicker)
+                            .toggleStyle(.switch)
+                            .labelsHidden()
+                            .disabled(allProjects.isEmpty)
+                            .onChange(of: showingProjectPicker) {
+                                if !showingProjectPicker {
+                                    newTaskProject = nil
+                                } else {
+                                    newTaskProject = allProjects.first
+                                }
+                            }
+
+                    }
+                    if allProjects.isEmpty {
+                        ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.rectangle")
+                    }
+
+                    if showingProjectPicker  {
+                        DisclosureGroup("Add to") {
+                            if allProjects.isEmpty {
+                                ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.rectangle")
+                            } else {
+                                Picker("Project", selection: $newTaskProject) {
+                                    ForEach(allProjects) { project in
+                                        Text(project.displayTitle)
+                                            .tag(Optional(project))
+                                    }
                                 }
                             }
                         }
@@ -81,10 +115,12 @@ struct AddTaskView: View {
 
             if showingDatePicker {
                 task.dateDue = newTaskDateDue
+                task.hasDueDate = true
             }
 
             if let project = newTaskProject {
                 task.project = project
+                task.hasProject = true
             }
 
             context.insert(object: task)
@@ -93,6 +129,7 @@ struct AddTaskView: View {
             newTaskName = ""
             newTaskNote = ""
             newTaskProject = nil
+            newTaskDateDue = nil
 
             dismiss()
         }
