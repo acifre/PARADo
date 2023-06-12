@@ -10,10 +10,14 @@ import SwiftUI
 
 struct ProjectListView: View {
     @Environment(\.modelContext) private var context
-    @Query(sort: \.title) var allProjects: [Project]
+    @Query var allProjects: [Project]
 
     @State var newProjectTitle = ""
     @State var newProjectDescription = ""
+    @State var newProjectDateDue = Date()
+
+    @State var showingDatePicker = false
+    @State var showingAddProject = false
 
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -25,66 +29,45 @@ struct ProjectListView: View {
     }()
 
     var body: some View {
-        List {
-            Section {
-                DisclosureGroup("Create Project") {
-                    TextField("Project title", text: $newProjectTitle)
-
-                    TextField("Project description", text: $newProjectDescription, axis: .vertical)
-                        .lineLimit(2...4)
-
-                    Button("Save") { createProject() }
-                        .disabled(newProjectTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-                }
-            }
-            Section("Projects") {
+        VStack(alignment: .leading) {
+            List {
                 if allProjects.isEmpty {
                     ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.clipboard.fill")
                 } else {
                     ForEach(allProjects) { project in
-                        NavigationLink {
-
-                            VStack {
-                                Text(project.title)
-                                Text(project.content)
-                                Text("\(project.tasks.count)")
-
-                                VStack {
-                                    ForEach(project.tasks) { task in
-                                        Text(task.name)
-                                    }
-                                }
-                            }
-                        } label: {
-                            VStack(alignment: .leading) {
-                                Text(project.title)
-                                Text(project.dateCreated, formatter: dateFormatter)
-                                    .font(.caption)
-                            }
+                        VStack(alignment: .leading) {
+                            Text(project.displayTitle)
+                                .font(.headline)
+                            Text(project.displayDateCreated, style: .date)
+                                .font(.caption)
                         }
                     }
                         .onDelete { indexSet in
-                        indexSet.forEach { index in
-                            context.delete(allProjects[index])
-                        }
-
-                        try? context.save()
-
+                            withAnimation {
+                                indexSet.forEach { index in
+                                    context.delete(allProjects[index])
+                                }
+                                try? context.save()
+                            }
                     }
+                }
+
+                Button(action: { showingAddProject.toggle() }) {
+                    HStack {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .frame(width: 20, height: 20)
+                        Text("New Project")
+                    }
+                }
+                    .sheet(isPresented: $showingAddProject) {
+                    AddProjectView()
+
                 }
             }
         }
-    }
-
-    func createProject() {
-
-        let project = Project(title: newProjectTitle, content: newProjectDescription)
-
-        context.insert(object: project)
-        try? context.save()
-
-        newProjectTitle = ""
-        newProjectDescription = ""
+            .navigationBarTitle("Projects")
+            .tint(.green)
     }
 }
 

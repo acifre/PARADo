@@ -11,8 +11,7 @@ import SwiftUI
 struct TaskListView: View {
 
     @Environment(\.modelContext) private var context
-    @Query(sort: \.title) var allProjects: [Project]
-    @Query(sort: \.name) var allTasks: [Task]
+    @Query(sort: \.name, order: .reverse) var allTasks: [Task]
 
     @State var newTaskName = ""
     @State var newTaskNote = ""
@@ -40,52 +39,36 @@ struct TaskListView: View {
                     ForEach(allTasks) { task in
                         TaskCell(task: task)
                             .onTapGesture {
-                            task.isComplete.toggle()
-                            try? context.save()
+                                withAnimation {
+                                    task.isComplete.toggle()
+                                    try? context.save()
+                                }
                         }
                     }
                         .onDelete { indexSet in
-                        indexSet.forEach { index in
-                            context.delete(allTasks[index])
-                        }
-                        try? context.save()
+                            withAnimation {
+                                indexSet.forEach { index in
+                                    context.delete(allTasks[index])
+                                }
+                                try? context.save()
+                            }
                     }
                 }
                 Button(action: { showingAddTask.toggle() }) {
                     HStack {
                         Image(systemName: "plus.circle.fill")
-                        .resizable()
+                            .resizable()
                             .frame(width: 20, height: 20)
                         Text("New Task")
                     }
                 }
-                .sheet(isPresented: $showingAddTask) {
+                    .sheet(isPresented: $showingAddTask) {
                     AddTaskView()
                 }
-                    .accentColor(Color(UIColor.systemBlue)) 
+                    .accentColor(Color(UIColor.systemBlue))
             }
         }
-        .navigationBarTitle("Tasks")
-    }
-
-    func createTask() {
-
-        let task = Task(name: newTaskName, note: newTaskNote)
-
-        if showingDatePicker {
-            task.dateDue = newTaskDateDue
-        }
-
-        if let project = newTaskProject {
-            task.project = project
-        }
-
-        context.insert(object: task)
-        try? context.save()
-
-        newTaskName = ""
-        newTaskNote = ""
-        newTaskProject = nil
+            .navigationBarTitle("Tasks")
     }
 }
 

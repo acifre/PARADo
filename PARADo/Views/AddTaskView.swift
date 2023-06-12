@@ -13,8 +13,7 @@ struct AddTaskView: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
 
-    @Query(sort: \.title) var allProjects: [Project]
-    @Query(sort: \.name) var allTasks: [Task]
+    @Query var allProjects: [Project]
 
     @State var newTaskName = ""
     @State var newTaskNote = ""
@@ -53,7 +52,7 @@ struct AddTaskView: View {
                         } else {
                             Picker("Project", selection: $newTaskProject) {
                                 ForEach(allProjects) { project in
-                                    Text(project.title)
+                                    Text(project.displayTitle)
                                         .tag(Optional(project))
                                 }
                             }
@@ -75,26 +74,28 @@ struct AddTaskView: View {
         }
     }
 
-    func createTask() {
+    private func createTask() {
 
-        let task = Task(name: newTaskName, note: newTaskNote)
+        withAnimation {
+            let task = Task(name: newTaskName, note: newTaskNote)
 
-        if showingDatePicker {
-            task.dateDue = newTaskDateDue
+            if showingDatePicker {
+                task.dateDue = newTaskDateDue
+            }
+
+            if let project = newTaskProject {
+                task.project = project
+            }
+
+            context.insert(object: task)
+            try? context.save()
+
+            newTaskName = ""
+            newTaskNote = ""
+            newTaskProject = nil
+
+            dismiss()
         }
-
-        if let project = newTaskProject {
-            task.project = project
-        }
-
-        context.insert(object: task)
-        try? context.save()
-
-        newTaskName = ""
-        newTaskNote = ""
-        newTaskProject = nil
-
-        dismiss()
     }
 }
 

@@ -8,15 +8,15 @@
 import Foundation
 import SwiftData
 
-@Model
-class Project {
+@Model final class Project {
     @Attribute(.unique) var id: String?
-    var title: String
+    var title: String?
     var content: String
-    var dateCreated: Date
+    var dateCreated: Date?
     var dateFinished: Date?
-    
-    @Attribute(.transient) var isChecked: Bool = false
+    var dateDue: Date?
+    var category: String
+    @Attribute(.transient) var isComplete: Bool
     
     @Relationship(.cascade, inverse: \Task.project) var tasks: [Task]
     
@@ -24,7 +24,53 @@ class Project {
         self.id = UUID().uuidString
         self.title = title
         self.content = content
-        self.dateCreated = Date()
+        self.dateCreated = Date.now
         self.tasks = []
+        self.category = "Inbox"
+        self.isComplete = false
+
+    }
+}
+
+extension Project {
+
+    var displayTitle: String {
+        title ?? "Untitled Project"
+    }
+
+    var displayContent: String {
+        content ?? ""
+    }
+
+    var displayDateCreated: Date {
+        dateCreated ?? Date.now
+    }
+
+    var displayDateFinished: Date {
+        dateFinished ?? Date.now
+    }
+
+    var displayDateDue: Date {
+        dateDue ?? Date.now
+    }
+
+    
+}
+
+enum ProjectCategory: String, Codable, CaseIterable  {
+
+    case inbox, current, area, archive
+
+    var text: String {
+        switch self {
+        case .inbox:
+            return "Inbox"
+        case .current:
+            return "Current"
+        case .area:
+            return "Area"
+        case .archive:
+            return "Archive"
+        }
     }
 }
