@@ -14,11 +14,13 @@ class Task {
     var name: String
     var note: String
     var dateCreated: Date
-    var dateDue: Date
-    var dateFinished: Date?
+    var dateDue: Date?
+//    var dateFinished: Date?
     
     @Attribute(.transient) var isComplete: Bool = false
-    
+    @Attribute(.transient) var hasDueDate: Bool = false
+    @Attribute(.transient) var hasProject: Bool = false
+
     @Relationship var project: Project?
     
     init(name: String, note: String) {
@@ -26,7 +28,6 @@ class Task {
         self.name = name
         self.note = note
         self.dateCreated = Date()
-        self.dateDue = Date()
 
     }
     

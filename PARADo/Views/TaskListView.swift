@@ -20,6 +20,8 @@ struct TaskListView: View {
 
     @State var showingDatePicker = false
     @State var showingAddTask = false
+    @State var showingInfo = false
+
 
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -38,12 +40,14 @@ struct TaskListView: View {
                 } else {
                     ForEach(allTasks) { task in
                         TaskCell(task: task)
-                            .onTapGesture {
-                                withAnimation {
-                                    task.isComplete.toggle()
-                                    try? context.save()
-                                }
-                        }
+//                            .onTapGesture {
+//                                withAnimation {
+////                                    task.isComplete.toggle()
+////                                    try? context.save()
+//                                    showingInfo.toggle()
+//                                
+//                                }
+//                        }
                     }
                         .onDelete { indexSet in
                             withAnimation {

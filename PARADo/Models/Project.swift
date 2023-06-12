@@ -17,7 +17,8 @@ import SwiftData
     var dateDue: Date?
     var category: String
     @Attribute(.transient) var isComplete: Bool
-    
+
+
     @Relationship(.cascade, inverse: \Task.project) var tasks: [Task]
     
     init(title: String, content: String) {
