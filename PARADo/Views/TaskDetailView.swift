@@ -101,9 +101,10 @@ struct TaskDetailView: View {
                                 }
                             }
                         }
+
                     }
 
-                    Text(task.project?.displayTitle ?? "No project")
+                   // Text(task.project?.displayTitle ?? "No project")
 
                 }
             }

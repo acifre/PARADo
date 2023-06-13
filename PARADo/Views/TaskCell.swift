@@ -13,7 +13,7 @@ struct TaskCell: View {
     @State var showingInfo = false
     @State var showingDetailView = false
 
-    var task: Task
+    @Bindable var task: Task
 
     var body: some View {
         HStack {

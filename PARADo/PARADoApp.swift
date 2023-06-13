@@ -21,8 +21,8 @@ struct PARADoApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                projectList
                 taskList
+                projectList
             }
                 .preferredColorScheme(.dark)
         }
