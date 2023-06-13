@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6C44A2C02A36BE7200422BF7 /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C44A2BF2A36BE7200422BF7 /* Filters.swift */; };
+		6C5587AC2A38EDD30020081E /* KeyboardGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5587AB2A38EDD30020081E /* KeyboardGroupView.swift */; };
 		6C6081DC2A36558100664DA7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6081DB2A36558100664DA7 /* Extensions.swift */; };
 		6C6081DE2A366E7A00664DA7 /* CheckToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6081DD2A366E7A00664DA7 /* CheckToggleStyle.swift */; };
 		6C6081E02A36705200664DA7 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6081DF2A36705200664DA7 /* TaskCell.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		6C44A2BF2A36BE7200422BF7 /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
+		6C5587AB2A38EDD30020081E /* KeyboardGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGroupView.swift; sourceTree = "<group>"; };
 		6C6081DB2A36558100664DA7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6C6081DD2A366E7A00664DA7 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
 		6C6081DF2A36705200664DA7 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		6C73EA3A2A34E68500AABFF9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6C5587AB2A38EDD30020081E /* KeyboardGroupView.swift */,
 				6C6081DF2A36705200664DA7 /* TaskCell.swift */,
 				6CBA32342A379E51005E606A /* TaskDetailView.swift */,
 				6C73EA512A36232D00AABFF9 /* TaskListView.swift */,
@@ -221,6 +224,7 @@
 				6C73EA502A34ECC600AABFF9 /* ProjectListView.swift in Sources */,
 				6C73EA402A34E68500AABFF9 /* ContentView.swift in Sources */,
 				6C73EA3E2A34E68500AABFF9 /* PARADoApp.swift in Sources */,
+				6C5587AC2A38EDD30020081E /* KeyboardGroupView.swift in Sources */,
 				6C44A2C02A36BE7200422BF7 /* Filters.swift in Sources */,
 				6C6081E02A36705200664DA7 /* TaskCell.swift in Sources */,
 				6C6081E42A367CF500664DA7 /* AddProjectView.swift in Sources */,

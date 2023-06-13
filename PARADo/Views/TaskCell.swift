@@ -22,7 +22,6 @@ struct TaskCell: View {
                     task.isComplete.toggle()
                     try? context.save()
                 }
-
             } label: {
                 Image(systemName: task.isComplete ? "checkmark.circle.fill" : "circle")
                     .resizable()
@@ -55,15 +54,15 @@ struct TaskCell: View {
                     .foregroundColor(.accentColor)
                     .frame(width: 20, height: 20)
                     .onTapGesture {
-                        withAnimation {
-                            showingDetailView.toggle()
-                        }
+                    withAnimation {
+                        showingDetailView.toggle()
+                    }
                 }
                     .transition(.opacity)
                     .popover(isPresented: $showingDetailView) {
-                        TaskDetailView(showingInfo: $showingInfo, task: task)
-                    }
-                    
+                    TaskDetailView(showingInfo: $showingInfo, task: task)
+                }
+
 
             } else {
                 Spacer()
@@ -71,7 +70,6 @@ struct TaskCell: View {
             }
 
         }
-//            .contentShape(Rectangle())
             .onLongPressGesture {
             withAnimation {
                 showingInfo.toggle()

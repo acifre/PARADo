@@ -24,13 +24,7 @@ struct AddTaskView: View {
                     TextField("Task name", text: $task.name)
                         .toolbar {
                         ToolbarItemGroup(placement: .keyboard) {
-                            Button {
-                                withAnimation {
-                                    task.hasDueDate.toggle()
-                                }
-                            } label: {
-                                Image(systemName: "calendar")
-                            }
+                            KeyboardGroupView(task: task)
                         }
                     }
                     TextField("Add note", text: $task.note, axis: .vertical)
@@ -39,7 +33,17 @@ struct AddTaskView: View {
 
                 Section {
                     HStack {
+                        Image(systemName: task.isImportant ? "flag.fill" : "flag")
+                            .foregroundStyle(task.isImportant ? .yellow : .secondary)
+                        Text("Important")
+                        Spacer()
+                        Toggle("Important", isOn: $task.isImportant)
+                            .toggleStyle(.switch)
+                            .labelsHidden()
+                    }
+                    HStack {
                         Image(systemName: "calendar")
+                            .foregroundStyle(task.hasDueDate ? .red : .secondary)
                         Text("Due")
                         Spacer()
                         Toggle("Due date", isOn: $task.hasDueDate)
@@ -54,6 +58,7 @@ struct AddTaskView: View {
 
                     HStack {
                         Image(systemName: "list.bullet.rectangle")
+                            .foregroundStyle(task.hasProject ? .green : .secondary)
                         Text("Project")
                         Spacer()
                         Toggle("Project", isOn: $task.hasProject)
@@ -114,3 +119,7 @@ struct AddTaskView: View {
 //#Preview {
 //    AddTaskView()
 //}
+
+
+
+

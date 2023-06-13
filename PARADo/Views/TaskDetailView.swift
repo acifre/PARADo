@@ -82,7 +82,6 @@ struct TaskDetailView: View {
                                 try? context.save()
                             }
                         }
-
                     }
 
                     if allProjects.isEmpty {

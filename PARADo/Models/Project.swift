@@ -21,7 +21,7 @@ import SwiftData
 
     @Relationship(.cascade, inverse: \Task.project) var tasks: [Task]
     
-    init(title: String, content: String) {
+    init(title: String = "", content: String = "") {
         self.id = UUID().uuidString
         self.title = title
         self.content = content
@@ -40,7 +40,7 @@ extension Project {
     }
 
     var displayContent: String {
-        content ?? ""
+        content 
     }
 
     var displayDateCreated: Date {
