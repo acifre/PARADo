@@ -63,7 +63,6 @@
 		6C73EA212A34E68500AABFF9 = {
 			isa = PBXGroup;
 			children = (
-				6CBA32342A379E51005E606A /* TaskDetailView.swift */,
 				6C73EA2C2A34E68500AABFF9 /* PARADo */,
 				6C73EA2B2A34E68500AABFF9 /* Products */,
 			);
@@ -124,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				6C6081DF2A36705200664DA7 /* TaskCell.swift */,
+				6CBA32342A379E51005E606A /* TaskDetailView.swift */,
 				6C73EA512A36232D00AABFF9 /* TaskListView.swift */,
 				6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */,
 				6C6081E32A367CF500664DA7 /* AddProjectView.swift */,

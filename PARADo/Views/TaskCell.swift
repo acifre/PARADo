@@ -63,6 +63,7 @@ struct TaskCell: View {
                     .popover(isPresented: $showingDetailView) {
                         TaskDetailView(showingInfo: $showingInfo, task: task)
                     }
+                    
 
             } else {
                 Spacer()

@@ -14,13 +14,9 @@ struct TaskDetailView: View {
 
     @Query var allProjects: [Project]
 
-    @State private var showingDatePicker = false
-    @State private var showingProjectPicker = false
-
     @State private var editedDateDue = Date()
 
     @Binding var showingInfo: Bool
-
     @Bindable var task: Task
 
     var dateFormatter: DateFormatter = {
@@ -51,10 +47,12 @@ struct TaskDetailView: View {
                             .toggleStyle(.switch)
                             .labelsHidden()
                             .onChange(of: task.hasDueDate) {
-                            if !task.hasDueDate {
-                                task.dateDue = nil
-                            }
+                            withAnimation {
+                                if !task.hasDueDate {
+                                    task.dateDue = nil
+                                }
                                 try? context.save()
+                            }
                         }
                     }
                     if task.hasDueDate {
@@ -75,13 +73,14 @@ struct TaskDetailView: View {
                             .labelsHidden()
                             .disabled(allProjects.isEmpty)
                             .onChange(of: task.hasProject) {
-
-                            if !task.hasProject {
-                                task.project = nil
-                            } else {
-                                task.project = allProjects.first
-                            }
+                            withAnimation {
+                                if !task.hasProject {
+                                    task.project = nil
+                                } else {
+                                    task.project = allProjects.first
+                                }
                                 try? context.save()
+                            }
                         }
 
                     }
@@ -114,15 +113,19 @@ struct TaskDetailView: View {
                 .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        try? context.save()
-                        dismiss()
-                        showingInfo = false
+                        withAnimation {
+                            try? context.save()
+                            dismiss()
+                            showingInfo = false
+                        }
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel", role: .cancel) {
-                        dismiss()
-                        showingInfo = false
+                        withAnimation {
+                            dismiss()
+                            showingInfo = false
+                        }
                     }
                 }
 

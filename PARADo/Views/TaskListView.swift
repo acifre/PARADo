@@ -11,17 +11,12 @@ import SwiftUI
 struct TaskListView: View {
 
     @Environment(\.modelContext) private var context
-    @Query(filter: .init(#Predicate { !$0.isComplete }), sort: \.dateCreated, order: .reverse) var allTasks: [Task]
+    @Query(sort: \.dateCreated, order: .reverse) var allTasks: [Task]
 
-    @State var newTaskName = ""
-    @State var newTaskNote = ""
-    @State var newTaskDateDue = Date()
-    @State var newTaskProject: Project?
+    @State private var taskToEdit: Task?
 
-    @State var showingDatePicker = false
     @State var showingAddTask = false
     @State var showingInfo = false
-
 
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -40,22 +35,26 @@ struct TaskListView: View {
                 } else {
                     ForEach(allTasks) { task in
                         TaskCell(task: task)
-//                            .onTapGesture {
-//                                withAnimation {
-////                                    task.isComplete.toggle()
-////                                    try? context.save()
-//                                    showingInfo.toggle()
-//                                
-//                                }
-//                        }
-                    }
-                        .onDelete { indexSet in
-                            withAnimation {
-                                indexSet.forEach { index in
-                                    context.delete(allTasks[index])
+                            .swipeActions {
+                            Button {
+                                withAnimation {
+                                    context.delete(task)
                                 }
-                                try? context.save()
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                                    .symbolVariant(.fill)
+                                    .tint(.red)
                             }
+
+                            Button {
+                                withAnimation {
+                                    taskToEdit = task
+                                }
+                            } label: {
+                                Label("Edit", systemImage: "pencil")
+                                    .tint(.yellow)
+                            }
+                        }
                     }
                 }
                 Button(action: { showingAddTask.toggle() }) {
@@ -69,7 +68,12 @@ struct TaskListView: View {
                     .sheet(isPresented: $showingAddTask) {
                     AddTaskView()
                 }
-                    .accentColor(Color(UIColor.systemBlue))
+                    .sheet(item: $taskToEdit, onDismiss: {
+                    taskToEdit = nil
+                }, content: { task in
+                        TaskDetailView(showingInfo: $showingInfo, task: task)
+                    })
+                    .tint(.accentColor)
             }
         }
             .navigationBarTitle("Tasks")
