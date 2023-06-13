@@ -14,8 +14,6 @@ struct TaskDetailView: View {
 
     @Query var allProjects: [Project]
 
-    @State private var editedDateDue = Date()
-
     @Binding var showingInfo: Bool
     @Bindable var task: Task
 
@@ -31,83 +29,7 @@ struct TaskDetailView: View {
 
     var body: some View {
         NavigationView {
-            Form {
-                Section {
-                    TextField("Task name", text: $task.name)
-                    TextField("Notes", text: $task.note, axis: .vertical)
-                        .lineLimit(3...6)
-                }
-
-                Section {
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text("Due")
-                        Spacer()
-                        Toggle("Due", isOn: $task.hasDueDate.animation())
-                            .toggleStyle(.switch)
-                            .labelsHidden()
-                            .onChange(of: task.hasDueDate) {
-                            withAnimation {
-                                if !task.hasDueDate {
-                                    task.dateDue = nil
-                                }
-                                try? context.save()
-                            }
-                        }
-                    }
-                    if task.hasDueDate {
-                        Text(task.dateDue ?? .now, formatter: dateFormatter)
-                        DatePicker("Date due", selection: $task.dateDue.toUnwrapped(defaultValue: .now), displayedComponents: .date)
-                            .datePickerStyle(.graphical)
-                    }
-
-                }
-
-                Section {
-                    HStack {
-                        Image(systemName: "list.bullet.rectangle")
-                        Text("Project")
-                        Spacer()
-                        Toggle("Project", isOn: $task.hasProject)
-                            .toggleStyle(.switch)
-                            .labelsHidden()
-                            .disabled(allProjects.isEmpty)
-                            .onChange(of: task.hasProject) {
-                            withAnimation {
-                                if !task.hasProject {
-                                    task.project = nil
-                                } else {
-                                    task.project = allProjects.first
-                                }
-                                try? context.save()
-                            }
-                        }
-                    }
-
-                    if allProjects.isEmpty {
-                        ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.rectangle")
-                    }
-
-                    if task.hasProject {
-                        DisclosureGroup("Choose project") {
-                            if allProjects.isEmpty {
-                                ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.rectangle")
-                            } else {
-                                Picker("Project", selection: $task.project) {
-                                    ForEach(allProjects) { project in
-                                        Text(project.displayTitle)
-                                            .tag(Optional(project))
-                                    }
-                                }
-                            }
-                        }
-
-                    }
-
-                   // Text(task.project?.displayTitle ?? "No project")
-
-                }
-            }
+            TaskFormSectionView(task: task)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("Details")
                 .toolbar {
