@@ -15,30 +15,25 @@ struct AddTaskView: View {
 
     @Query var allProjects: [Project]
 
-    @State var newTaskName = ""
-    @State var newTaskNote = ""
-    @State var newTaskDateDue: Date?
-    @State var newTaskProject: Project?
-
-    @State var showingDatePicker = false
-    @State var showingProjectPicker = false
-
+    @State var task = Task()
 
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Task name", text: $newTaskName)
+                    TextField("Task name", text: $task.name)
                         .toolbar {
                         ToolbarItemGroup(placement: .keyboard) {
                             Button {
-                                showingDatePicker.toggle()
+                                withAnimation {
+                                    task.hasDueDate.toggle()
+                                }
                             } label: {
                                 Image(systemName: "calendar")
                             }
                         }
                     }
-                    TextField("Add note", text: $newTaskNote, axis: .vertical)
+                    TextField("Add note", text: $task.note, axis: .vertical)
                         .lineLimit(3...6)
                 }
 
@@ -47,13 +42,13 @@ struct AddTaskView: View {
                         Image(systemName: "calendar")
                         Text("Due")
                         Spacer()
-                        Toggle("Due date", isOn: $showingDatePicker)
+                        Toggle("Due date", isOn: $task.hasDueDate)
                             .toggleStyle(.switch)
                             .labelsHidden()
                     }
 
-                    if showingDatePicker {
-                        DatePicker("Date due", selection: $newTaskDateDue.toUnwrapped(defaultValue: .now), displayedComponents: .date)
+                    if task.hasDueDate {
+                        DatePicker("Date due", selection: $task.dateDue.toUnwrapped(defaultValue: .now), displayedComponents: .date)
                             .datePickerStyle(.compact)
                     }
 
@@ -61,29 +56,31 @@ struct AddTaskView: View {
                         Image(systemName: "list.bullet.rectangle")
                         Text("Project")
                         Spacer()
-                        Toggle("Project", isOn: $showingProjectPicker)
+                        Toggle("Project", isOn: $task.hasProject)
                             .toggleStyle(.switch)
                             .labelsHidden()
                             .disabled(allProjects.isEmpty)
-                            .onChange(of: showingProjectPicker) {
-                                if !showingProjectPicker {
-                                    newTaskProject = nil
+                            .onChange(of: task.hasProject) {
+                            withAnimation {
+                                if !task.hasProject {
+                                    task.project = nil
                                 } else {
-                                    newTaskProject = allProjects.first
+                                    task.project = allProjects.first
                                 }
                             }
+                        }
 
                     }
                     if allProjects.isEmpty {
                         ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.rectangle")
                     }
 
-                    if showingProjectPicker  {
+                    if task.hasProject {
                         DisclosureGroup("Add to") {
                             if allProjects.isEmpty {
                                 ContentUnavailableView("You have no projects yet", systemImage: "list.bullet.rectangle")
                             } else {
-                                Picker("Project", selection: $newTaskProject) {
+                                Picker("Project", selection: $task.project) {
                                     ForEach(allProjects) { project in
                                         Text(project.displayTitle)
                                             .tag(Optional(project))
@@ -101,37 +98,15 @@ struct AddTaskView: View {
                     Button("Cancel") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Add") { createTask() }
-                        .disabled(newTaskName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    Button("Add") {
+                        withAnimation {
+                            context.insert(object: task)
+                            dismiss()
+                        }
+                    }
+                        .disabled(task.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 }
             }
-        }
-    }
-
-    private func createTask() {
-
-        withAnimation {
-            let task = Task(name: newTaskName, note: newTaskNote)
-
-            if showingDatePicker {
-                task.dateDue = newTaskDateDue
-                task.hasDueDate = true
-            }
-
-            if let project = newTaskProject {
-                task.project = project
-                task.hasProject = true
-            }
-
-            context.insert(object: task)
-            try? context.save()
-
-            newTaskName = ""
-            newTaskNote = ""
-            newTaskProject = nil
-            newTaskDateDue = nil
-
-            dismiss()
         }
     }
 }

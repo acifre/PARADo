@@ -54,6 +54,7 @@ struct TaskDetailView: View {
                             if !task.hasDueDate {
                                 task.dateDue = nil
                             }
+                                try? context.save()
                         }
                     }
                     if task.hasDueDate {
@@ -80,6 +81,7 @@ struct TaskDetailView: View {
                             } else {
                                 task.project = allProjects.first
                             }
+                                try? context.save()
                         }
 
                     }

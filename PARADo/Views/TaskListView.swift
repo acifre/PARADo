@@ -11,7 +11,7 @@ import SwiftUI
 struct TaskListView: View {
 
     @Environment(\.modelContext) private var context
-    @Query(sort: \.name, order: .reverse) var allTasks: [Task]
+    @Query(filter: .init(#Predicate { !$0.isComplete }), sort: \.dateCreated, order: .reverse) var allTasks: [Task]
 
     @State var newTaskName = ""
     @State var newTaskNote = ""
