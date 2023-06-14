@@ -10,14 +10,13 @@ import SwiftUI
 
 struct TaskListView: View {
 
-    @Environment(\.modelContext) private var context
-    @Query(filter: #Predicate { $0.isComplete == false },
-    sort: \.dateCreated, order: .reverse) var allTasks: [Task]
+    @Environment(\.modelContext) var context
+    @Query var allTasks: [Task]
 
     @State private var taskToEdit: Task?
 
-    @State var showingAddTask = false
-    @State var showingInfo = false
+    @State private var showingAddTask = false
+    @State private var showingInfo = false
 
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -32,18 +31,22 @@ struct TaskListView: View {
         VStack(alignment: .leading) {
             List {
                 if allTasks.isEmpty {
-                    VStack {
-                        ContentUnavailableView("You have no tasks yet", systemImage: "list.bullet", description: Text("Add a task to get started!"))
-                        Button {
-                            withAnimation {
-                                for task in Task.exampleTasks {
-                                    context.insert(task)
+
+                    ContentUnavailableView("You have no tasks yet", systemImage: "list.bullet", description: Text("Add a task to get started!"))
+                        .contextMenu(ContextMenu(menuItems: {
+                            Button {
+                                withAnimation {
+                                    for task in Task.exampleTasks {
+                                        context.insert(task)
+                                    }
+                                    try? context.save()
+
                                 }
+                            } label: {
+                                Text("Add Example Tasks")
                             }
-                        } label: {
-                            Text("Add example tasks")
-                        }
-                    }
+                        }))
+
                 } else {
                     ForEach(allTasks) { task in
                         TaskCell(task: task)
@@ -77,20 +80,19 @@ struct TaskListView: View {
                         Text("New Task")
                     }
                 }
-                .contextMenu(ContextMenu(menuItems: {
-                    Button {
-                        withAnimation {
-                            for task in allTasks {
-                                context.delete(task)
-                            }
-                        }
-                    
-                    } label: {
-                        Text("Delete example tasks")
-                    }
-                    /*@START_MENU_TOKEN@*/Text("Menu Item 2")/*@END_MENU_TOKEN@*/
-                    /*@START_MENU_TOKEN@*/Text("Menu Item 3")/*@END_MENU_TOKEN@*/
-                }))
+//                    .contextMenu(ContextMenu(menuItems: {
+//                    Button {
+//                        withAnimation {
+//                            for task in allTasks {
+//                                context.delete(task)
+//                            }
+//                        }
+//
+//                    } label: {
+//                        Text("Delete example tasks")
+//                    }
+//
+//                }))
                     .sheet(isPresented: $showingAddTask) {
                     AddTaskView()
                 }
@@ -101,9 +103,33 @@ struct TaskListView: View {
                     })
                     .tint(.accentColor)
             }
+            .contextMenu(ContextMenu(menuItems: {
+                Button {
+                    withAnimation {
+                        for task in Task.exampleTasks {
+                            context.insert(task)
+                        }
+                        try? context.save()
+
+                    }
+                } label: {
+                    Text("Add Example Tasks")
+                }
+                Button {
+                    withAnimation {
+                        for task in allTasks {
+                            context.delete(task)
+                        }
+                        try? context.save()
+
+                    }
+                } label: {
+                    Text("Delete All Tasks")
+                }
+            }))
         }
             .navigationBarTitle("Tasks")
-            
+
     }
 }
 
