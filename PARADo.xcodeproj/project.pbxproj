@@ -83,7 +83,6 @@
 			children = (
 				6C73EA2D2A34E68500AABFF9 /* TODO.md */,
 				6C73EA3D2A34E68500AABFF9 /* PARADoApp.swift */,
-				6C44A2BF2A36BE7200422BF7 /* Filters.swift */,
 				6C73EA3F2A34E68500AABFF9 /* ContentView.swift */,
 				6C73EA412A34E68600AABFF9 /* Assets.xcassets */,
 				6C73EA2F2A34E68500AABFF9 /* Private */,
@@ -107,6 +106,7 @@
 		6C73EA342A34E68500AABFF9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6C44A2BF2A36BE7200422BF7 /* Filters.swift */,
 				6C6081DB2A36558100664DA7 /* Extensions.swift */,
 				6C73EA4D2A34E88000AABFF9 /* Task.swift */,
 				6C73EA4B2A34E78B00AABFF9 /* Project.swift */,
@@ -130,8 +130,8 @@
 				6CBA32342A379E51005E606A /* TaskDetailView.swift */,
 				6C73EA512A36232D00AABFF9 /* TaskListView.swift */,
 				6C5587AD2A38F6310020081E /* TaskFormView.swift */,
-				6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */,
 				6C6081E32A367CF500664DA7 /* AddProjectView.swift */,
+				6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

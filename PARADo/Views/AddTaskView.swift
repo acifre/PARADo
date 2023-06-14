@@ -14,6 +14,7 @@ struct AddTaskView: View {
     @Environment(\.dismiss) private var dismiss
 
     @Query var allProjects: [Project]
+    @Query var allTasks: [Task]
 
     @State var task = Task()
 
@@ -26,7 +27,28 @@ struct AddTaskView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
                 }
-                ToolbarItem(placement: .confirmationAction) {
+                ToolbarItemGroup(placement: .confirmationAction) {
+                    Menu {
+                        Button {
+                            for task in Task.exampleTasks {
+                                context.insert(object: task)
+                            }
+                        } label: {
+                            Text("Add example tasks")
+                        }
+                        Button {
+                            for task in allTasks {
+                                context.delete(object: task)
+                            }
+                        
+                        } label: {
+                            Text("Delete example tasks")
+                        }
+
+                    } label: {
+                        Label("Example menu", systemImage: "text.badge.plus")
+                    }
+
                     Button("Add") {
                         withAnimation {
                             context.insert(object: task)

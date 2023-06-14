@@ -43,5 +43,21 @@ class Task {
         self.hasProject = false
 
     }
-    
+
+    static var exampleTasks: [Task] {
+        [
+            Task(name: "Watering plants", note: "This is an example task."),
+            Task(name: "Taking the trash out", note: "This is an example task."),
+            Task(name: "Writing intro to paper", note: "This is an example task."),
+            Task(name: "Taking dog out", note: "This is an example task."),
+            Task(name: "Change out lightbulb", note: "This is an example task."),
+            Task(name: "Do laundry", note: "This is an example task."),
+            Task(name: "Get ice cream", note: "This is an example task."),
+            Task(name: "Make a grocery list", note: "This is an example task."),
+            Task(name: "Change out air filter", note: "This is an example task."),
+            Task(name: "Call mom", note: "This is an example task.")
+        ]
+    }
+
 }
+

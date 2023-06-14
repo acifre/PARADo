@@ -40,5 +40,23 @@ enum OrderBy: Identifiable, CaseIterable {
     }
 }
 
+enum TaskFilterBy: Identifiable, CaseIterable {
+    var id: Self { self }
+    case all
+    case completed
+    case notCompleted
+
+    var text: String {
+        switch self {
+        case .all:
+            return "All"
+        case .completed:
+            return "Completed"
+        case .notCompleted:
+            return "Not Completed"
+        }
+    }
+}
+
 
 

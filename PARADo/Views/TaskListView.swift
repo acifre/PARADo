@@ -32,7 +32,18 @@ struct TaskListView: View {
         VStack(alignment: .leading) {
             List {
                 if allTasks.isEmpty {
-                    ContentUnavailableView("You have no tasks yet", systemImage: "list.bullet.clipboard.fill")
+                    VStack {
+                        ContentUnavailableView("You have no tasks yet", systemImage: "list.bullet", description: Text("Add a task to get started!"))
+                        Button {
+                            withAnimation {
+                                for task in Task.exampleTasks {
+                                    context.insert(task)
+                                }
+                            }
+                        } label: {
+                            Text("Add example tasks")
+                        }
+                    }
                 } else {
                     ForEach(allTasks) { task in
                         TaskCell(task: task)
@@ -66,6 +77,20 @@ struct TaskListView: View {
                         Text("New Task")
                     }
                 }
+                .contextMenu(ContextMenu(menuItems: {
+                    Button {
+                        withAnimation {
+                            for task in allTasks {
+                                context.delete(task)
+                            }
+                        }
+                    
+                    } label: {
+                        Text("Delete example tasks")
+                    }
+                    /*@START_MENU_TOKEN@*/Text("Menu Item 2")/*@END_MENU_TOKEN@*/
+                    /*@START_MENU_TOKEN@*/Text("Menu Item 3")/*@END_MENU_TOKEN@*/
+                }))
                     .sheet(isPresented: $showingAddTask) {
                     AddTaskView()
                 }
@@ -78,6 +103,7 @@ struct TaskListView: View {
             }
         }
             .navigationBarTitle("Tasks")
+            
     }
 }
 
