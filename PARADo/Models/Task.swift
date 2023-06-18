@@ -17,17 +17,17 @@ class Task {
         case high = 2
     }
 
-    @Attribute(.unique) var id: String?
-    var name: String
-    var note: String
-    var dateCreated: Date
+    var id: String?
+    var name: String = ""
+    var note: String = ""
+    var dateCreated: Date = Date()
     var dateDue: Date?
 //    var dateFinished: Date?
 
-    var isImportant: Bool
-    var isComplete: Bool
-    var hasDueDate: Bool
-    var hasProject: Bool
+    var isImportant: Bool = false
+    var isComplete: Bool = false
+    var hasDueDate: Bool = false
+    var hasProject: Bool = false
 
     @Relationship var project: Project?
     
@@ -35,7 +35,7 @@ class Task {
         self.id = UUID().uuidString
         self.name = name
         self.note = note
-        self.dateCreated = .now
+        self.dateCreated = Date()
         self.dateDue = nil
         self.isImportant = false
         self.isComplete = false

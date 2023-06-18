@@ -9,23 +9,23 @@ import Foundation
 import SwiftData
 
 @Model final class Project {
-    @Attribute(.unique) var id: String?
+    var id: String?
     var title: String?
-    var content: String
-    var dateCreated: Date?
+    var content: String = ""
+    var dateCreated: Date = Date()
     var dateFinished: Date?
     var dateDue: Date?
-    var category: String
-    @Attribute(.transient) var isComplete: Bool
+    var category: String = "Inbox"
+    var isComplete: Bool = false
 
 
-    @Relationship(.cascade, inverse: \Task.project) var tasks: [Task]
-    
+    @Relationship(.cascade, inverse: \Task.project) var tasks: [Task]?
+
     init(title: String = "", content: String = "") {
         self.id = UUID().uuidString
         self.title = title
         self.content = content
-        self.dateCreated = Date.now
+        self.dateCreated = Date()
         self.tasks = []
         self.category = "Inbox"
         self.isComplete = false
@@ -44,7 +44,8 @@ extension Project {
     }
 
     var displayDateCreated: Date {
-        dateCreated ?? Date.now
+        dateCreated
+        //?? Date.now
     }
 
     var displayDateFinished: Date {

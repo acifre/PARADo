@@ -48,6 +48,8 @@
 		6C73EA4D2A34E88000AABFF9 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		6C73EA4F2A34ECC600AABFF9 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
 		6C73EA512A36232D00AABFF9 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		6CA6298C2A3F970200EB174C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6CA6298D2A3F970C00EB174C /* PARADo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PARADo.entitlements; sourceTree = "<group>"; };
 		6CBA32342A379E51005E606A /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,8 @@
 		6C73EA2C2A34E68500AABFF9 /* PARADo */ = {
 			isa = PBXGroup;
 			children = (
+				6CA6298D2A3F970C00EB174C /* PARADo.entitlements */,
+				6CA6298C2A3F970200EB174C /* Info.plist */,
 				6C73EA2D2A34E68500AABFF9 /* TODO.md */,
 				6C73EA3D2A34E68500AABFF9 /* PARADoApp.swift */,
 				6C73EA3F2A34E68500AABFF9 /* ContentView.swift */,
@@ -363,12 +367,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PARADo/PARADo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PARADo/Preview Content\"";
 				DEVELOPMENT_TEAM = 3LL78QD9R4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PARADo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -392,12 +398,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PARADo/PARADo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PARADo/Preview Content\"";
 				DEVELOPMENT_TEAM = 3LL78QD9R4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PARADo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
